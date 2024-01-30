@@ -12,22 +12,30 @@ class ApiService implements ApiServiceInterface {
   }
 
   public async fetchData<T>(url: string): Promise<AxiosResponse<T>> {
-    const response = await this.httpService.sendRequest<T>({
-      method: 'get',
-      url,
-    });
-
-    return response;
+    try {
+      const response = await this.httpService.sendRequest<T>({
+        method: 'get',
+        url,
+      });
+  
+      return response;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
   }
 
   public async postData<T>(url: string, data: any):  Promise<AxiosResponse<T>> {
-    const response = await this.httpService.sendRequest<T>({
-      method: 'post',
-      url,
-      data
-    });
-
-    return response;
+    try {
+      const response = await this.httpService.sendRequest<T>({
+        method: 'post',
+        url,
+        data
+      });
+  
+      return response;
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
   }
 }
 

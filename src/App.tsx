@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Router from './Router';
 import SplashScreen from 'react-native-splash-screen';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 function App(): React.JSX.Element {
   useEffect(() => {
@@ -9,9 +11,11 @@ function App(): React.JSX.Element {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Router />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={styles.container}>
+        <Router />
+      </SafeAreaView>
+    </Provider>
   );
 }
 
